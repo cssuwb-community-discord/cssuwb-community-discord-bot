@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "cleanDist",
+        "type": "shell",
+        "command": "echo 🧹 Cleaning TypeScript output directory && rm -rf ./dist",       
+      },
+      {
+        "label": "compileTsOutput",
+        "type": "shell",
+        "command": "echo 🖥️ Compiling TypeScript files && tsc",       
+      },
+      {
+        "label": "rebuildProject",
+        "type": "shell",
+        "command": "echo 🛠️ Bot Rebuilt!",       
+        "dependsOrder": "sequence",
+        "dependsOn": ["cleanDist", "compileTsOutput"],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      }
+    ]
+}
