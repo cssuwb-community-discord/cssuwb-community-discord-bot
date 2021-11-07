@@ -5,4 +5,8 @@ export const TYPES = {
   DiscordToken: Symbol("Token"),
   MessageResponder: Symbol("MessageResponder"),
   PingFinder: Symbol("PingFinder"),
+  RedditUsername: Symbol("RedditUsername"),
+  RedditPassword: Symbol("RedditPassword"),
+  RedditClientID: Symbol("RedditClientID"),
+  RedditClientSecret: Symbol("RedditClientSecret")
 };
