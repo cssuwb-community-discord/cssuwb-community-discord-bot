@@ -20,7 +20,7 @@ describe('MessageResponder', () => {
     mockedMessageClass = mock(Message);
     mockedMessageInstance = instance(mockedMessageClass);
     setMessageContents();
-    service = new MessageResponder(mockedPingFinderInstance);
+    service = new MessageResponder(mockedPingFinderInstance, null);
   })
 
   it('should reply', async () => {

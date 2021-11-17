@@ -10,5 +10,9 @@ export const TYPES = {
   RedditClientID: Symbol("RedditClientID"),
   RedditClientSecret: Symbol("RedditClientSecret"),
   RedditOAuthGenerator: Symbol("RedditOAuthGenerator"),
-  RedditFetchTop: Symbol("RedditFetchTop")
+  RedditFetchTop: Symbol("RedditFetchTop"),
+  RedditRandomPostGenerator: Symbol("RedditRandomPostGenerator"),
+  RedditPostParser: Symbol("RedditPostParser"),
+  RedditEmbedCreator: Symbol("RedditEmbedCreator"),
+  AskRedditFetcher: Symbol("AskRedditFetcher")
 };

@@ -1,17 +1,9 @@
-import {inject, injectable} from "inversify";
-import {TYPES} from "../types";
 import axios from "axios";
-import { RedditOAuthGenerator } from "./reddit-ouath-generator";
-
+import {injectable} from "inversify";
+@injectable()
 export class RedditFetchTop
 {
-    private redditOAuthGenerator: RedditOAuthGenerator;
-    constructor(
-        @inject(TYPES.RedditOAuthGenerator) redditOAuthGenerator: RedditOAuthGenerator
-    ){
-        this.redditOAuthGenerator = redditOAuthGenerator;
-    }
-    fetchTopDailyPosts(subreddit: string, token: string): Promise<{response: Object}>{
+    fetchTopDailyPosts(subreddit: string, token: string): Promise<Object>{
         return axios.get(
             `https://www.reddit.com/r/${subreddit}/top.json?t=daily`,
             {
