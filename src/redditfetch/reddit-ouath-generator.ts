@@ -24,13 +24,13 @@ export class RedditOAuthGenerator
          "https://www.reddit.com/api/v1/access_token",
          "grant_type=client_credentials", {
             headers: {
-               Authorization: `Basic ${Buffer.from(`${this.redditClientID}:${process.env.REDDIT_CLIENT_SECRET}`).toString("base64")}`,
+               Authorization: `Basic ${Buffer.from(`${this.redditClientID}:${this.redditClientSecret}`).toString("base64")}`,
                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
             },
             params: {
                scope: "read",
             },
          }
-      ).then((r) => r.data);
+      ).then((r) => r.data.access_token);
     }
 }

@@ -8,5 +8,7 @@ export const TYPES = {
   RedditUsername: Symbol("RedditUsername"),
   RedditPassword: Symbol("RedditPassword"),
   RedditClientID: Symbol("RedditClientID"),
-  RedditClientSecret: Symbol("RedditClientSecret")
+  RedditClientSecret: Symbol("RedditClientSecret"),
+  RedditOAuthGenerator: Symbol("RedditOAuthGenerator"),
+  RedditFetchTop: Symbol("RedditFetchTop")
 };
