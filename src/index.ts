@@ -1,13 +1,17 @@
-require('dotenv').config(); // Recommended way of loading dotenv
+// Recommended way of loading dotenv
 import container from "./inversify.config";
 import { TYPES } from "./types";
 import { Bot } from "./bot";
+require("dotenv").config();
 
 // Instantiate bot and attempt to log in via token
-let bot = container.get<Bot>(TYPES.Bot);
+const bot = container.get<Bot>(TYPES.Bot);
 
-bot.listen().then(() => {
-    console.log('Logged in!');
-}).catch((error) => {
-    console.log('Oh no! ', error);
-});
+bot
+  .listen()
+  .then(() => {
+    console.log("Logged in!");
+  })
+  .catch((error) => {
+    console.log("Oh no! ", error);
+  });

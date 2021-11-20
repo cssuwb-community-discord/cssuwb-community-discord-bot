@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node dist/src/index.js",
     "watch": "tsc -p tsconfig.json -w",
-    "test": "mocha -r ts-node/register \"dist/tests/**/*.spec.js\""
+    "test": "mocha -r ts-node/register \"dist/tests/**/*.spec.js\"",
+    "pretty": "npx prettier write .",
+    "lint": "npx eslint --ext .ts ./ --fix"
   },
   "author": "",
   "license": "ISC",
@@ -22,8 +24,16 @@
   "devDependencies": {
     "@types/chai": "^4.2.14",
     "@types/mocha": "^8.2.0",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
     "chai": "^4.2.0",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.1",
     "mocha": "^8.2.1",
+    "prettier": "^2.4.1",
     "ts-mockito": "^2.6.1",
     "ts-node": "^9.1.1"
   }

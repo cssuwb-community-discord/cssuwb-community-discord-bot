@@ -14,5 +14,5 @@ export const TYPES = {
   RedditRandomPostGenerator: Symbol("RedditRandomPostGenerator"),
   RedditPostParser: Symbol("RedditPostParser"),
   RedditEmbedCreator: Symbol("RedditEmbedCreator"),
-  AskRedditFetcher: Symbol("AskRedditFetcher")
+  AskRedditFetcher: Symbol("AskRedditFetcher"),
 };
