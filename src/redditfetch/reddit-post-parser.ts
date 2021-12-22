@@ -4,7 +4,6 @@ export class RedditPostParser {
   parseBody(postBody: Object): Promise<Object> {
     return new Promise<Object>((resolve, reject) => {
       try {
-        console.log(postBody);
         let author: String = postBody["author"];
         let subreddit: String = postBody["subreddit"];
         let title: String = postBody["title"];

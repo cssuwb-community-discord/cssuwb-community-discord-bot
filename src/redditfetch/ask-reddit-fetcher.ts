@@ -1,10 +1,10 @@
-import { RedditEmbedCreator } from "./redditfetch/reddit-embed-creator";
-import { RedditFetchTop } from "./redditfetch/reddit-fetch-top";
-import { RedditOAuthGenerator } from "./redditfetch/reddit-ouath-generator";
-import { RedditPostParser } from "./redditfetch/reddit-post-parser";
-import { RedditRandomPostGenerator } from "./redditfetch/reddit-random-post-generator";
+import { RedditEmbedCreator } from "./reddit-embed-creator";
+import { RedditFetchTop } from "./reddit-fetch-top";
+import { RedditOAuthGenerator } from "./reddit-ouath-generator";
+import { RedditPostParser } from "./reddit-post-parser";
+import { RedditRandomPostGenerator } from "./reddit-random-post-generator";
 import { inject, injectable } from "inversify";
-import { TYPES } from "./types";
+import { TYPES } from "../types";
 import { MessageEmbed } from "discord.js";
 
 @injectable()

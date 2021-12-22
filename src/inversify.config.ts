@@ -15,7 +15,7 @@ import { RedditFetchTop } from "./redditfetch/reddit-fetch-top";
 import { RedditRandomPostGenerator } from "./redditfetch/reddit-random-post-generator";
 import { RedditPostParser } from "./redditfetch/reddit-post-parser";
 import { RedditEmbedCreator } from "./redditfetch/reddit-embed-creator";
-import { AskRedditFetcher } from "./ask-reddit-fetcher";
+import { AskRedditFetcher } from "./redditfetch/ask-reddit-fetcher";
 const customenv = require("dotenv").config().parsed;
 
 // Dependency Injection Container

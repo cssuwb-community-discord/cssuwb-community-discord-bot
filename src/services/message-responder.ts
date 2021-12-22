@@ -4,7 +4,7 @@ import { inject, injectable } from "inversify";
 import { TYPES } from "../types";
 import { LeetcodeProblemDownloader } from "../leetcode/leetcode-problem-downloader";
 import { LeetcodeProblemSelector } from "../leetcode/leetcode-problem-selector";
-import { AskRedditFetcher } from "../ask-reddit-fetcher";
+import { AskRedditFetcher } from "../redditfetch/ask-reddit-fetcher";
 
 // Class to handle how bot should respond to valid user input
 @injectable()
@@ -12,12 +12,13 @@ export class MessageResponder {
   private pingFinder: PingFinder;
   private leetcodeProblemDownloader: LeetcodeProblemDownloader;
   private leetcodeProblemSelector: LeetcodeProblemSelector;
+  private askRedditFetcher: AskRedditFetcher;
   constructor(
     @inject(TYPES.PingFinder) pingFinder: PingFinder,
     @inject(TYPES.LeetcodeProblemDownloader)
     leetcodeProblemDownloader: LeetcodeProblemDownloader,
     @inject(TYPES.LeetcodeProblemSelector)
-    leetcodeProblemSelector: LeetcodeProblemSelector
+    leetcodeProblemSelector: LeetcodeProblemSelector,
     @inject(TYPES.AskRedditFetcher) askRedditFetcher: AskRedditFetcher
   ) {
     this.pingFinder = pingFinder;
@@ -46,10 +47,12 @@ export class MessageResponder {
         .selectProblem()
         .then((embed) => message.reply(embed))
         .catch((err) => message.reply(err));
+    }
     if (message.content == "!qotd") {
       return this.askRedditFetcher
         .fetchRedditEmbed()
-        .then((embed) => message.reply(embed));
+        .then((embed) => message.reply(embed))
+        .catch((err) => message.reply(err));
     }
     return Promise.reject();
   }

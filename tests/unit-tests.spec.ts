@@ -7,12 +7,14 @@ import { instance, mock, verify, when } from "ts-mockito";
 import { Message } from "discord.js";
 import { LeetcodeProblemDownloader } from "../src/leetcode/leetcode-problem-downloader";
 import { LeetcodeProblemSelector } from "../src/leetcode/leetcode-problem-selector";
+import { AskRedditFetcher } from "../src/redditfetch/ask-reddit-fetcher";
 
 describe("MessageResponder", () => {
   let mockedPingFinderClass: PingFinder;
   let mockedPingFinderInstance: PingFinder;
   let mockedMessageClass: Message;
   let mockedMessageInstance: Message;
+  let mockedAskRedditFetcherInstance: AskRedditFetcher;
   let mockedLeetcodeProblemDownloaderInstance: LeetcodeProblemDownloader;
   let mockedLeetcodeProblemSelectorInstance: LeetcodeProblemSelector;
 
@@ -25,12 +27,14 @@ describe("MessageResponder", () => {
     mockedMessageInstance = instance(mockedMessageClass);
     mockedLeetcodeProblemDownloaderInstance = mock(LeetcodeProblemDownloader);
     mockedLeetcodeProblemSelectorInstance = mock(LeetcodeProblemSelector);
+    mockedAskRedditFetcherInstance = mock(AskRedditFetcher);
 
     setMessageContents();
     service = new MessageResponder(
       mockedPingFinderInstance,
       mockedLeetcodeProblemDownloaderInstance,
-      mockedLeetcodeProblemSelectorInstance
+      mockedLeetcodeProblemSelectorInstance,
+      mockedAskRedditFetcherInstance
     );
   });
 
