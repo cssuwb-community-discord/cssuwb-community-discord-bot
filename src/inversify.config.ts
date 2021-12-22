@@ -5,12 +5,18 @@ import { Bot } from "./bot";
 import { Client } from "discord.js";
 import { MessageResponder } from "./services/message-responder";
 import { PingFinder } from "./services/ping-finder";
+import { LeetcodeProblemDownloader } from "./leetcode/leetcode-problem-downloader";
+import { LeetcodeProblemParser } from "./leetcode/leetcode-problem-parser";
+import { LeetcodeFileLoader } from "./leetcode/leetcode-file-loader";
+import { LeetcodeEmbedCreator } from "./leetcode/leetcode-embed-creator";
+import { LeetcodeProblemSelector } from "./leetcode/leetcode-problem-selector";
 import { RedditOAuthGenerator } from "./redditfetch/reddit-ouath-generator";
 import { RedditFetchTop } from "./redditfetch/reddit-fetch-top";
 import { RedditRandomPostGenerator } from "./redditfetch/reddit-random-post-generator";
 import { RedditPostParser } from "./redditfetch/reddit-post-parser";
 import { RedditEmbedCreator } from "./redditfetch/reddit-embed-creator";
 import { AskRedditFetcher } from "./ask-reddit-fetcher";
+const customenv = require("dotenv").config().parsed;
 
 // Dependency Injection Container
 const container = new Container();
@@ -68,5 +74,24 @@ container
   .to(MessageResponder)
   .inSingletonScope();
 container.bind<PingFinder>(TYPES.PingFinder).to(PingFinder).inSingletonScope();
-
+container
+  .bind<LeetcodeProblemDownloader>(TYPES.LeetcodeProblemDownloader)
+  .to(LeetcodeProblemDownloader)
+  .inSingletonScope();
+container
+  .bind<LeetcodeProblemParser>(TYPES.LeetcodeProblemParser)
+  .to(LeetcodeProblemParser)
+  .inSingletonScope();
+container
+  .bind<LeetcodeFileLoader>(TYPES.LeetcodeFileLoader)
+  .to(LeetcodeFileLoader)
+  .inSingletonScope();
+container
+  .bind<LeetcodeEmbedCreator>(TYPES.LeetcodeEmbedCreator)
+  .to(LeetcodeEmbedCreator)
+  .inSingletonScope();
+container
+  .bind<LeetcodeProblemSelector>(TYPES.LeetcodeProblemSelector)
+  .to(LeetcodeProblemSelector)
+  .inSingletonScope();
 export default container;

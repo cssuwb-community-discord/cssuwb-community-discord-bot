@@ -5,12 +5,16 @@ import { PingFinder } from "../src/services/ping-finder";
 import { MessageResponder } from "../src/services/message-responder";
 import { instance, mock, verify, when } from "ts-mockito";
 import { Message } from "discord.js";
+import { LeetcodeProblemDownloader } from "../src/leetcode/leetcode-problem-downloader";
+import { LeetcodeProblemSelector } from "../src/leetcode/leetcode-problem-selector";
 
 describe("MessageResponder", () => {
   let mockedPingFinderClass: PingFinder;
   let mockedPingFinderInstance: PingFinder;
   let mockedMessageClass: Message;
   let mockedMessageInstance: Message;
+  let mockedLeetcodeProblemDownloaderInstance: LeetcodeProblemDownloader;
+  let mockedLeetcodeProblemSelectorInstance: LeetcodeProblemSelector;
 
   let service: MessageResponder;
 
@@ -19,8 +23,15 @@ describe("MessageResponder", () => {
     mockedPingFinderInstance = instance(mockedPingFinderClass);
     mockedMessageClass = mock(Message);
     mockedMessageInstance = instance(mockedMessageClass);
+    mockedLeetcodeProblemDownloaderInstance = mock(LeetcodeProblemDownloader);
+    mockedLeetcodeProblemSelectorInstance = mock(LeetcodeProblemSelector);
+
     setMessageContents();
-    service = new MessageResponder(mockedPingFinderInstance, null);
+    service = new MessageResponder(
+      mockedPingFinderInstance,
+      mockedLeetcodeProblemDownloaderInstance,
+      mockedLeetcodeProblemSelectorInstance
+    );
   });
 
   it("should reply", async () => {
