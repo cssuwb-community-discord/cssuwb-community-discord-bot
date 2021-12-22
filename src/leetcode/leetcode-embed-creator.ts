@@ -17,6 +17,7 @@ export class LeetcodeEmbedCreator {
         let embed: MessageEmbed = new MessageEmbed()
           .setTitle(problemObject.problemName)
           .setURL(leetcodeProblemLink + problemObject.problemNameSlug)
+          .setColor("#e9971d")
           .setFooter("Difficulty: " + leetcodeDifficultyString);
         resolve(embed);
       } catch (exception) {
