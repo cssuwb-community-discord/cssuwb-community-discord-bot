@@ -11,7 +11,7 @@ export class Bot {
 
   constructor(
     @inject(TYPES.Client) client: Client,
-    @inject(TYPES.Token) token: string,
+    @inject(TYPES.DiscordToken) token: string,
     @inject(TYPES.MessageResponder) messageResponder: MessageResponder
   ) {
     this.client = client;
