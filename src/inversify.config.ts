@@ -22,8 +22,12 @@ const customenv = require("dotenv").config().parsed;
 const container = new Container();
 
 // Initialize Discord Bot objects
-container.bind<Bot>(TYPES.Bot).to(Bot).inSingletonScope();
-container.bind<Client>(TYPES.Client).toConstantValue(new Client());
+container
+  .bind<Bot>(TYPES.Bot)
+  .to(Bot).inSingletonScope();
+container
+  .bind<Client>(TYPES.Client)
+  .toConstantValue(new Client());
 container
   .bind<string>(TYPES.DiscordToken)
   .toConstantValue(process.env.DISCORD_TOKEN);
@@ -42,7 +46,15 @@ container
   .bind<string>(TYPES.RedditClientSecret)
   .toConstantValue(process.env.REDDIT_CLIENT_SECRET);
 
-//Initialize Reddit Functionality
+// Initialize channel .env values
+container
+  .bind<string>(TYPES.LeetcodeChannel)
+  .toConstantValue(process.env.LEETCODE_CHANNEL);
+container
+  .bind<string>(TYPES.AskRedditChannel)
+  .toConstantValue(process.env.ASKREDDIT_CHANNEL);
+
+// Initialize Reddit Functionality
 container
   .bind<RedditOAuthGenerator>(TYPES.RedditOAuthGenerator)
   .to(RedditOAuthGenerator)
@@ -68,12 +80,7 @@ container
   .to(AskRedditFetcher)
   .inSingletonScope();
 
-// Initialize Discord Bot functionality classes
-container
-  .bind<MessageResponder>(TYPES.MessageResponder)
-  .to(MessageResponder)
-  .inSingletonScope();
-container.bind<PingFinder>(TYPES.PingFinder).to(PingFinder).inSingletonScope();
+// Initialize Leetcode functionality classes
 container
   .bind<LeetcodeProblemDownloader>(TYPES.LeetcodeProblemDownloader)
   .to(LeetcodeProblemDownloader)
@@ -94,4 +101,15 @@ container
   .bind<LeetcodeProblemSelector>(TYPES.LeetcodeProblemSelector)
   .to(LeetcodeProblemSelector)
   .inSingletonScope();
+
+// Initialize Discord Bot functionality classes
+container
+  .bind<MessageResponder>(TYPES.MessageResponder)
+  .to(MessageResponder)
+  .inSingletonScope();
+container
+  .bind<PingFinder>(TYPES.PingFinder)
+  .to(PingFinder)
+  .inSingletonScope();
+
 export default container;

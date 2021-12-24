@@ -1,8 +1,15 @@
 // Put in Typescript types here
 export const TYPES = {
+  //env related tokens
+  DiscordToken: Symbol("DiscordToken"),
+  AskRedditChannel: Symbol("AskRedditChannel"),
+  LeetcodeChannel: Symbol("LeetcodeChannel"),
+  RedditUsername: Symbol("RedditUsername"),
+  RedditPassword: Symbol("RedditPassword"),
+  RedditClientID: Symbol("RedditClientID"),
+  RedditClientSecret: Symbol("RedditClientSecret"),
   Bot: Symbol("Bot"),
   Client: Symbol("Client"),
-  DiscordToken: Symbol("Token"),
   MessageResponder: Symbol("MessageResponder"),
   PingFinder: Symbol("PingFinder"),
   LeetcodeProblemParser: Symbol("LeetcodeProblemParser"),
@@ -12,10 +19,6 @@ export const TYPES = {
   LeetcodeFileLoader: Symbol("LeetcodeFileLoader"),
   LeetcodeProblemSelector: Symbol("LeetcodeProblemSelector"),
   LeetcodeEmbedCreator: Symbol("LeetcodeEmbedCreator"),
-  RedditUsername: Symbol("RedditUsername"),
-  RedditPassword: Symbol("RedditPassword"),
-  RedditClientID: Symbol("RedditClientID"),
-  RedditClientSecret: Symbol("RedditClientSecret"),
   RedditOAuthGenerator: Symbol("RedditOAuthGenerator"),
   RedditFetchTop: Symbol("RedditFetchTop"),
   RedditRandomPostGenerator: Symbol("RedditRandomPostGenerator"),
