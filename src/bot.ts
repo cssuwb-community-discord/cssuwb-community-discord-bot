@@ -22,9 +22,10 @@ export class Bot {
   }
   // Logs bot interactions
   public listen() {
+
     this.client.on("message", (message: Message) => {
-      if (message.author.bot) {
-        console.log("Ignoring bot message!");
+      if (message.author.id == this.client.user.id) {
+        console.log("Ignoring self message!");
         return;
       }
 

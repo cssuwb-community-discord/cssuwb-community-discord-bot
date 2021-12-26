@@ -31,21 +31,20 @@ export class AskRedditFetcher {
   }
   fetchRedditEmbed(): Promise<MessageEmbed> {
     return new Promise<MessageEmbed>((resolve, reject) => {
-      try {
-        this.redditOAuthGenerator
-          .generateToken()
-          .then((token) =>
-            this.redditFetchTop.fetchTopDailyPosts("askreddit", token)
-          )
-          .then((fetchObj) => this.redditRandomPostGenerator.pickPost(fetchObj))
-          .then((postObj) => this.redditPostParser.parseBody(postObj))
-          .then((parsedPostObj) =>
-            this.redditEmbedCreator.createEmbed(parsedPostObj)
-          )
-          .then((embed) => resolve(embed));
-      } catch (exception) {
-        reject(exception);
-      }
+      this.redditOAuthGenerator
+        .generateToken()
+        .then((token) =>
+          this.redditFetchTop.fetchTopDailyPosts("askreddit", token)
+        )
+        .then((fetchObj) => {
+          const rawPostBody = this.redditRandomPostGenerator.pickPost(fetchObj);
+          const parsedPostBody = this.redditPostParser.parseBody(rawPostBody);
+          const embed = this.redditEmbedCreator.createEmbed(parsedPostBody);
+          resolve(embed);
+        })
+        .catch(err => {
+          reject(err);
+        });
     });
   }
 }
