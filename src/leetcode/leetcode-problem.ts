@@ -21,7 +21,7 @@ enum LeetcodeDifficulty {
   HARD = 3,
 }
 function difficultyEnumToString(difficulty: LeetcodeDifficulty): string {
-  switch(difficulty) {
+  switch (difficulty) {
     case LeetcodeDifficulty.EASY:
       return "Easy";
     case LeetcodeDifficulty.MEDIUM:
@@ -32,8 +32,4 @@ function difficultyEnumToString(difficulty: LeetcodeDifficulty): string {
       return "";
   }
 }
-export { 
-  LeetcodeProblem, 
-  LeetcodeDifficulty, 
-  difficultyEnumToString
-};
+export { LeetcodeProblem, LeetcodeDifficulty, difficultyEnumToString };
