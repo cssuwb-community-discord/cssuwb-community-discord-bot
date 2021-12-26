@@ -23,12 +23,8 @@ const customenv = require("dotenv").config().parsed;
 const container = new Container();
 
 // Initialize Discord Bot objects
-container
-  .bind<Bot>(TYPES.Bot)
-  .to(Bot).inSingletonScope();
-container
-  .bind<Client>(TYPES.Client)
-  .toConstantValue(new Client());
+container.bind<Bot>(TYPES.Bot).to(Bot).inSingletonScope();
+container.bind<Client>(TYPES.Client).toConstantValue(new Client());
 container
   .bind<string>(TYPES.DiscordToken)
   .toConstantValue(process.env.DISCORD_TOKEN);
@@ -112,9 +108,6 @@ container
   .bind<MessageResponder>(TYPES.MessageResponder)
   .to(MessageResponder)
   .inSingletonScope();
-container
-  .bind<PingFinder>(TYPES.PingFinder)
-  .to(PingFinder)
-  .inSingletonScope();
+container.bind<PingFinder>(TYPES.PingFinder).to(PingFinder).inSingletonScope();
 
 export default container;

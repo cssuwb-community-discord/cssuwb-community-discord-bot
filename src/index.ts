@@ -7,8 +7,9 @@ require("dotenv").config();
 
 // Instantiate bot and attempt to log in via token
 const bot = container.get<Bot>(TYPES.Bot);
-const dailyTaskService = container
-  .get<DailyTaskService>(TYPES.DailyTaskService);
+const dailyTaskService = container.get<DailyTaskService>(
+  TYPES.DailyTaskService
+);
 
 bot
   .login()
