@@ -8,10 +8,13 @@ export const TYPES = {
   RedditPassword: Symbol("RedditPassword"),
   RedditClientID: Symbol("RedditClientID"),
   RedditClientSecret: Symbol("RedditClientSecret"),
+  //bot related tokens
   Bot: Symbol("Bot"),
   Client: Symbol("Client"),
   MessageResponder: Symbol("MessageResponder"),
   PingFinder: Symbol("PingFinder"),
+  DailyTaskService: Symbol("DailyTaskService"),
+  //leetcode related tokens
   LeetcodeProblemParser: Symbol("LeetcodeProblemParser"),
   LeetcodeProblem: Symbol("LeetcodeProblem"),
   LeetcodeDifficulty: Symbol("LeetcodeDifficulty"),
@@ -19,6 +22,7 @@ export const TYPES = {
   LeetcodeFileLoader: Symbol("LeetcodeFileLoader"),
   LeetcodeProblemSelector: Symbol("LeetcodeProblemSelector"),
   LeetcodeEmbedCreator: Symbol("LeetcodeEmbedCreator"),
+  //reddit related tokens
   RedditOAuthGenerator: Symbol("RedditOAuthGenerator"),
   RedditFetchTop: Symbol("RedditFetchTop"),
   RedditRandomPostGenerator: Symbol("RedditRandomPostGenerator"),

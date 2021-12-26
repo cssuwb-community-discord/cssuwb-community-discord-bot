@@ -16,6 +16,7 @@ import { RedditRandomPostGenerator } from "./redditfetch/reddit-random-post-gene
 import { RedditPostParser } from "./redditfetch/reddit-post-parser";
 import { RedditEmbedCreator } from "./redditfetch/reddit-embed-creator";
 import { AskRedditFetcher } from "./redditfetch/ask-reddit-fetcher";
+import { DailyTaskService } from "./services/daily-task-service";
 const customenv = require("dotenv").config().parsed;
 
 // Dependency Injection Container
@@ -31,6 +32,10 @@ container
 container
   .bind<string>(TYPES.DiscordToken)
   .toConstantValue(process.env.DISCORD_TOKEN);
+container
+  .bind<DailyTaskService>(TYPES.DailyTaskService)
+  .to(DailyTaskService)
+  .inSingletonScope();
 
 // Initialize Reddit credentials
 container

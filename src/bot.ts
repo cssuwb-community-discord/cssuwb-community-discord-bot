@@ -1,4 +1,4 @@
-import { Client, Message } from "discord.js";
+import { Client, Message} from "discord.js";
 import { inject, injectable } from "inversify";
 import { TYPES } from "./types";
 import { MessageResponder } from "./services/message-responder";
@@ -8,7 +8,6 @@ export class Bot {
   private client: Client;
   private readonly token: string;
   private messageResponder: MessageResponder;
-
   constructor(
     @inject(TYPES.Client) client: Client,
     @inject(TYPES.DiscordToken) token: string,
@@ -18,9 +17,11 @@ export class Bot {
     this.token = token;
     this.messageResponder = messageResponder;
   }
-
+  public login(): Promise<string> {
+    return this.client.login(this.token);
+  }
   // Logs bot interactions
-  public listen(): Promise<string> {
+  public listen() {
     this.client.on("message", (message: Message) => {
       if (message.author.bot) {
         console.log("Ignoring bot message!");
@@ -38,6 +39,5 @@ export class Bot {
           console.log("Response not sent.");
         });
     });
-    return this.client.login(this.token);
   }
 }
