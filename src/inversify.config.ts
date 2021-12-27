@@ -7,7 +7,7 @@ import { MessageResponder } from "./services/message-responder";
 import { PingFinder } from "./services/ping-finder";
 import { LeetcodeProblemDownloader } from "./leetcode/leetcode-problem-downloader";
 import { LeetcodeProblemParser } from "./leetcode/leetcode-problem-parser";
-import { LeetcodeFileLoader } from "./leetcode/leetcode-file-loader";
+import { LeetcodeProblemPicker } from "./leetcode/leetcode-problem-picker";
 import { LeetcodeEmbedCreator } from "./leetcode/leetcode-embed-creator";
 import { LeetcodeProblemSelector } from "./leetcode/leetcode-problem-selector";
 import { RedditOAuthGenerator } from "./redditfetch/reddit-ouath-generator";
@@ -91,8 +91,8 @@ container
   .to(LeetcodeProblemParser)
   .inSingletonScope();
 container
-  .bind<LeetcodeFileLoader>(TYPES.LeetcodeFileLoader)
-  .to(LeetcodeFileLoader)
+  .bind<LeetcodeProblemPicker>(TYPES.LeetcodeProblemPicker)
+  .to(LeetcodeProblemPicker)
   .inSingletonScope();
 container
   .bind<LeetcodeEmbedCreator>(TYPES.LeetcodeEmbedCreator)

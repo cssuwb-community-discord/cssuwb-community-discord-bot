@@ -19,7 +19,7 @@ export const TYPES = {
   LeetcodeProblem: Symbol("LeetcodeProblem"),
   LeetcodeDifficulty: Symbol("LeetcodeDifficulty"),
   LeetcodeProblemDownloader: Symbol("LeetcodeProblemDownloader"),
-  LeetcodeFileLoader: Symbol("LeetcodeFileLoader"),
+  LeetcodeProblemPicker: Symbol("LeetcodeProblemPicker"),
   LeetcodeProblemSelector: Symbol("LeetcodeProblemSelector"),
   LeetcodeEmbedCreator: Symbol("LeetcodeEmbedCreator"),
   //reddit related tokens

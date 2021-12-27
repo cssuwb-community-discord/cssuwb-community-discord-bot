@@ -25,7 +25,6 @@ export class LeetcodeProblemDownloader {
           );
         })
         .then((problemObjects) => {
-          console.log(savePath);
           fs.writeFile(savePath, JSON.stringify(problemObjects), (err) => {
             if (err) {
               reject(err);
