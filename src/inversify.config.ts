@@ -4,7 +4,6 @@ import { TYPES } from "./types";
 import { Bot } from "./bot";
 import { Client } from "discord.js";
 import { MessageResponder } from "./services/message-responder";
-import { PingFinder } from "./services/ping-finder";
 import { LeetcodeProblemDownloader } from "./leetcode/leetcode-problem-downloader";
 import { LeetcodeProblemParser } from "./leetcode/leetcode-problem-parser";
 import { LeetcodeProblemPicker } from "./leetcode/leetcode-problem-picker";
@@ -108,6 +107,5 @@ container
   .bind<MessageResponder>(TYPES.MessageResponder)
   .to(MessageResponder)
   .inSingletonScope();
-container.bind<PingFinder>(TYPES.PingFinder).to(PingFinder).inSingletonScope();
 
 export default container;

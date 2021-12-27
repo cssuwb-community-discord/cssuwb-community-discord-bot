@@ -1,5 +1,4 @@
 import { Message } from "discord.js";
-import { PingFinder } from "./ping-finder";
 import { inject, injectable } from "inversify";
 import { TYPES } from "../types";
 import { LeetcodeProblemDownloader } from "../leetcode/leetcode-problem-downloader";
@@ -9,19 +8,16 @@ import { AskRedditFetcher } from "../redditfetch/ask-reddit-fetcher";
 // Class to handle how bot should respond to valid user input
 @injectable()
 export class MessageResponder {
-  private pingFinder: PingFinder;
   private leetcodeProblemDownloader: LeetcodeProblemDownloader;
   private leetcodeProblemSelector: LeetcodeProblemSelector;
   private askRedditFetcher: AskRedditFetcher;
   constructor(
-    @inject(TYPES.PingFinder) pingFinder: PingFinder,
     @inject(TYPES.LeetcodeProblemDownloader)
     leetcodeProblemDownloader: LeetcodeProblemDownloader,
     @inject(TYPES.LeetcodeProblemSelector)
     leetcodeProblemSelector: LeetcodeProblemSelector,
     @inject(TYPES.AskRedditFetcher) askRedditFetcher: AskRedditFetcher
   ) {
-    this.pingFinder = pingFinder;
     this.leetcodeProblemDownloader = leetcodeProblemDownloader;
     this.leetcodeProblemSelector = leetcodeProblemSelector;
     this.askRedditFetcher = askRedditFetcher;
@@ -29,9 +25,6 @@ export class MessageResponder {
 
   // Directly handle responding to user here
   handle(message: Message): Promise<Message | Message[]> {
-    if (this.pingFinder.isPing(message.content)) {
-      return message.reply("pong!");
-    }
     if (message.content == "leetcodedownload") {
       return this.leetcodeProblemDownloader
         .downloadParsedProblems()
