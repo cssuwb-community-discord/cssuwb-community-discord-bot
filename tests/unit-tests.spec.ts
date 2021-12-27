@@ -1,7 +1,6 @@
 import "reflect-metadata";
 import "mocha";
 import { expect } from "chai";
-import { PingFinder } from "../src/services/ping-finder";
 import { MessageResponder } from "../src/services/message-responder";
 import { instance, mock, verify, when } from "ts-mockito";
 import { Message } from "discord.js";
@@ -10,8 +9,6 @@ import { LeetcodeProblemSelector } from "../src/leetcode/leetcode-problem-select
 import { AskRedditFetcher } from "../src/redditfetch/ask-reddit-fetcher";
 
 describe("MessageResponder", () => {
-  let mockedPingFinderClass: PingFinder;
-  let mockedPingFinderInstance: PingFinder;
   let mockedMessageClass: Message;
   let mockedMessageInstance: Message;
   let mockedAskRedditFetcherInstance: AskRedditFetcher;
@@ -21,8 +18,6 @@ describe("MessageResponder", () => {
   let service: MessageResponder;
 
   beforeEach(() => {
-    mockedPingFinderClass = mock(PingFinder);
-    mockedPingFinderInstance = instance(mockedPingFinderClass);
     mockedMessageClass = mock(Message);
     mockedMessageInstance = instance(mockedMessageClass);
     mockedLeetcodeProblemDownloaderInstance = mock(LeetcodeProblemDownloader);
@@ -31,7 +26,6 @@ describe("MessageResponder", () => {
 
     setMessageContents();
     service = new MessageResponder(
-      mockedPingFinderInstance,
       mockedLeetcodeProblemDownloaderInstance,
       mockedLeetcodeProblemSelectorInstance,
       mockedAskRedditFetcherInstance
@@ -39,7 +33,6 @@ describe("MessageResponder", () => {
   });
 
   it("should reply", async () => {
-    whenIsPingThenReturn(true);
 
     await service.handle(mockedMessageInstance);
 
@@ -47,7 +40,6 @@ describe("MessageResponder", () => {
   });
 
   it("should not reply", async () => {
-    whenIsPingThenReturn(false);
 
     await service
       .handle(mockedMessageInstance)
@@ -64,9 +56,5 @@ describe("MessageResponder", () => {
 
   function setMessageContents() {
     mockedMessageInstance.content = "Non-empty string";
-  }
-
-  function whenIsPingThenReturn(result: boolean) {
-    when(mockedPingFinderClass.isPing("Non-empty string")).thenReturn(result);
   }
 });
