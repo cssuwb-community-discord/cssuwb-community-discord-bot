@@ -25,28 +25,6 @@ export class MessageResponder {
 
   // Directly handle responding to user here
   handle(message: Message): Promise<Message | Message[]> {
-    if (message.content == "leetcodedownload") {
-      return this.leetcodeProblemDownloader
-        .downloadParsedProblems()
-        .then((filePath) => {
-          return message.reply(filePath);
-        })
-        .catch((exception) => {
-          return message.reply(exception);
-        });
-    }
-    if (message.content == "leetcodefetch") {
-      return this.leetcodeProblemSelector
-        .selectProblem()
-        .then((embed) => message.reply(embed))
-        .catch((err) => message.reply(err));
-    }
-    if (message.content == "!qotd") {
-      return this.askRedditFetcher
-        .fetchRedditEmbed()
-        .then((embed) => message.reply(embed))
-        .catch((err) => message.reply(err));
-    }
     return Promise.reject();
   }
 }
