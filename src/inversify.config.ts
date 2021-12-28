@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { Container } from "inversify";
+import { Container, interfaces } from "inversify";
 import { TYPES } from "./types";
 import { Bot } from "./bot";
 import { Client } from "discord.js";
@@ -30,6 +30,12 @@ container
 container
   .bind<DailyTaskService>(TYPES.DailyTaskService)
   .to(DailyTaskService)
+  .inSingletonScope();
+
+// Initialize Discord Bot functionality classes
+container
+  .bind<MessageResponder>(TYPES.MessageResponder)
+  .to(MessageResponder)
   .inSingletonScope();
 
 // Initialize Reddit credentials
@@ -102,10 +108,12 @@ container
   .to(LeetcodeProblemSelector)
   .inSingletonScope();
 
-// Initialize Discord Bot functionality classes
+// Initialize Leetcode related dynamic variables
 container
-  .bind<MessageResponder>(TYPES.MessageResponder)
-  .to(MessageResponder)
-  .inSingletonScope();
+  .bind<Set<string>>(TYPES.UsedLeetcodeProblems)
+  .toConstantValue(new Set<string>());
+container
+  .bind<string>(TYPES.LeetcodeProblemFileLocation)
+  .toConstantValue("./leetcodeproblems.json");
 
 export default container;

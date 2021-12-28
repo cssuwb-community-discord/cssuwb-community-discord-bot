@@ -5,6 +5,7 @@ import { LeetcodeProblemDownloader } from "../leetcode/leetcode-problem-download
 import { LeetcodeProblemSelector } from "../leetcode/leetcode-problem-selector";
 import { AskRedditFetcher } from "../redditfetch/ask-reddit-fetcher";
 import { scheduleJob } from "node-schedule";
+import container from "../inversify.config";
 @injectable()
 export class DailyTaskService {
   //4:00PM UTC, 8:00AM PST
@@ -34,7 +35,6 @@ export class DailyTaskService {
     this.askRedditFetcher = askRedditFetcher;
   }
   public registerDailyTasks() {
-    console.log(Date.now());
     scheduleJob(this.dailyTimeString, (fireTime) => {
       console.log(`Starting reddit post routine at ${fireTime}`);
       this.client.channels
@@ -85,6 +85,8 @@ export class DailyTaskService {
         .downloadParsedProblems()
         .then((filePath) => {
           console.log(`Leetcode problem file located at ${filePath}`);
+          container.rebind<string>(TYPES.LeetcodeProblemFileLocation)
+            .toConstantValue(filePath);
         })
         .catch((err) => {
           console.error(

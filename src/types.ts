@@ -21,6 +21,8 @@ export const TYPES = {
   LeetcodeProblemPicker: Symbol("LeetcodeProblemPicker"),
   LeetcodeProblemSelector: Symbol("LeetcodeProblemSelector"),
   LeetcodeEmbedCreator: Symbol("LeetcodeEmbedCreator"),
+  UsedLeetcodeProblems: Symbol("UsedLeetcodeProblems"),
+  LeetcodeProblemFileLocation: Symbol("LeetcodeProblemFileLocation"),
   //reddit related tokens
   RedditOAuthGenerator: Symbol("RedditOAuthGenerator"),
   RedditFetchTop: Symbol("RedditFetchTop"),

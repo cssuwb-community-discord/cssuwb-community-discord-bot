@@ -2,9 +2,9 @@ import axios from "axios";
 import { LeetcodeProblemParser } from "./leetcode-problem-parser";
 import { inject, injectable } from "inversify";
 import { TYPES } from "../types";
-import * as fs from "fs";
+import container from "../inversify.config";
+import { writeFile } from "fs";
 const problemLink = "https://leetcode.com/api/problems/all/";
-const savePath = `./leetcodeproblems.json`;
 @injectable()
 export class LeetcodeProblemDownloader {
   private parser: LeetcodeProblemParser;
@@ -25,7 +25,9 @@ export class LeetcodeProblemDownloader {
           );
         })
         .then((problemObjects) => {
-          fs.writeFile(savePath, JSON.stringify(problemObjects), (err) => {
+          const savePath = container
+            .get<string>(TYPES.LeetcodeProblemFileLocation);
+          writeFile(savePath, JSON.stringify(problemObjects), (err) => {
             if (err) {
               reject(err);
             }
