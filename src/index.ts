@@ -17,8 +17,6 @@ bot
     console.log("Logged in");
     dailyTaskService.registerDailyTasks();
     console.log("Daily tasks registered");
-    bot.listen();
-    console.log("Listening for messages");
   })
   .catch((error) => {
     console.log("Oh no! ", error);
