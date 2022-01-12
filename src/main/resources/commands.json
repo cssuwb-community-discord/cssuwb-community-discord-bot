@@ -1,0 +1,33 @@
+{
+  "commands": [
+    {
+      "name": "leetcode",
+      "description": "Fetches a Leetcode problem",
+      "options": [
+        {
+          "name": "difficulty",
+          "description": "Difficulty of the problem",
+          "required": false,
+          "choices": [
+            {
+              "name": "Easy",
+              "value": "lc_easy"
+            },
+            {
+              "name": "Medium",
+              "value": "lc_medium"
+            },
+            {
+              "name": "Hard",
+              "value": "lc_hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "askreddit",
+      "description": "Fetch a question from r/AskReddit"
+    }
+  ]
+}
