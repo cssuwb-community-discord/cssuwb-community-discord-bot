@@ -6,17 +6,17 @@ Gradle version 7.3.3
 
 ## Settings file
 To properly setup this bot, you must create the file `settings.json` and store it in the `src/main/resource` folder. The file should follow the format:
-```json
+```
 {
   "discord": {
-    "bot_token": string,
-    "guild_id": string,
-    "application_id": string,
+    "bot_token": string
+    "guild_id": string
+    "application_id": string
     "daily_time": {
-      "hour": int,
+      "hour": int
       "minute": int
     },
-    "leetcodeChannel": string,
+    "leetcodeChannel": string
     "redditChannel": string
   }
 }
