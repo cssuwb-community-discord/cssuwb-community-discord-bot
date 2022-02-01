@@ -7,19 +7,19 @@
         {
           "name": "difficulty",
           "description": "Difficulty of the problem",
-          "required": false,
+          "type": 3,
           "choices": [
             {
               "name": "Easy",
-              "value": "lc_easy"
+              "value": "EASY"
             },
             {
               "name": "Medium",
-              "value": "lc_medium"
+              "value": "MEDIUM"
             },
             {
               "name": "Hard",
-              "value": "lc_hard"
+              "value": "HARD"
             }
           ]
         }
