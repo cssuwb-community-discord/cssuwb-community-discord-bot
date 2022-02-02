@@ -6,19 +6,20 @@ import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
-@Service("discordTimeTaskService")
-public class TimeTaskService {
+@Service("timerService")
+public class TimerService {
     private final SettingsService settingsService;
     private static final long MILLISECONDS_IN_DAY = 1000 * 60 * 60 * 24;
     private final Timer dailyTimer;
     @Autowired
-    public TimeTaskService(final SettingsService settingsService) {
+    public TimerService(final SettingsService settingsService) {
         this(settingsService, new Timer("DailyTasks"));
     }
-    public TimeTaskService(final SettingsService settingsService,
-                           final Timer dailyTimer){
+    public TimerService(final SettingsService settingsService,
+                        final Timer dailyTimer){
         this.settingsService = settingsService;
         this.dailyTimer = dailyTimer;
     }

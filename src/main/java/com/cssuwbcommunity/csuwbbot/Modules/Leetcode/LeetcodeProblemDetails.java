@@ -16,7 +16,7 @@ public class LeetcodeProblemDetails {
         return "https://leetcode.com/problems/" + titleSlug;
     }
     public double getAcceptancePercentage() {
-        return totalAccepted/totalSubmission;
+        return ((double) totalAccepted/ totalSubmission)*100.0;
     }
     @Override
     public String toString() {
