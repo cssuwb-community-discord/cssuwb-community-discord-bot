@@ -36,9 +36,13 @@ public class AskRedditTimeTask extends TimerTask {
     @Override
     public void run() {
         try {
+            logger.info("Beginning execution of AskRedditTimeTask");
+            logger.debug("Fetching post");
             final RedditPost post = redditService
                 .getRedditPost("askreddit", RedditCategory.HOT, RedditTime.ALL);
+            logger.debug("Creating message embed for post");
             final MessageEmbed embed = embedCreationService.buildRedditEmbed(post);
+            logger.debug("Fetching channel id from settings");
             final String channelID = settingsService
                 .getSettingsObject()
                 .get("discord")
@@ -48,7 +52,9 @@ public class AskRedditTimeTask extends TimerTask {
             final MessageChannel channel = discordBotService
                 .getDiscordInterface()
                 .getTextChannelById(channelID);
-            channel.sendMessageEmbeds(embed);
+            logger.debug("Sending embed");
+            channel.sendMessageEmbeds(embed).queue();
+            logger.info("Finished execution of AskRedditTimeTask");
         }
         catch(Exception e) {
             logger.error("An error occured in executing AskRedditTimeTask", e);

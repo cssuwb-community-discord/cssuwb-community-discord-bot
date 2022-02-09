@@ -33,12 +33,17 @@ public class LeetcodeProblemTimeTask extends TimerTask {
     @Override
     public void run() {
         try {
+            logger.info("Beginning execution of LeetcodeProblemTimeTask");
+            logger.debug("Creating problem filter");
             final LeetcodeProblemFilter filter =
                 new LeetcodeProblemFilter(false);
+            logger.debug("Fetching problem");
             final LeetcodeProblemDetails leetcodeProblemDetails = leetcodeService
                 .fetchRandomProblem(filter);
+            logger.debug("Creating message embed for problem");
             final MessageEmbed embed = embedCreationService
                 .getLeetcodeProblemEmbed(leetcodeProblemDetails);
+            logger.debug("Fetching channel id from settings");
             final String channelID = settingsService
                 .getSettingsObject()
                 .get("discord")
@@ -48,7 +53,9 @@ public class LeetcodeProblemTimeTask extends TimerTask {
             final MessageChannel channel = discordBotService
                 .getDiscordInterface()
                 .getTextChannelById(channelID);
-            channel.sendMessageEmbeds(embed);
+            logger.debug("Sending embed");
+            channel.sendMessageEmbeds(embed).queue();
+            logger.info("Finished execution of LeetcodeProblemTimeTask");
         }
         catch(Exception e) {
             logger.error("An error occured in executing AskRedditTimeTask", e);
