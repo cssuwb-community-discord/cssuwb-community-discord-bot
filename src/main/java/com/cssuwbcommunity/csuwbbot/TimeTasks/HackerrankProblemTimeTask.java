@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-@Component("leetcodeProblemTimeTask")
+@Component("hackerrankProblemTimeTask")
 public class HackerrankProblemTimeTask extends TimerTask {
     private static final Logger logger = LoggerFactory
         .getLogger(AskRedditTimeTask.class);
