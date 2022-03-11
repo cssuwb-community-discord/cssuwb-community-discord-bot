@@ -18,6 +18,7 @@ To properly setup this bot, you must create the file `settings.json` and store i
     },
     "leetcodeChannel": string
     "redditChannel": string
+    "hackerrankChannel": string
   }
 }
 ```

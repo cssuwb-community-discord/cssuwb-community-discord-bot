@@ -15,19 +15,23 @@ public class TimeTaskRegistrationService {
     //Tasks
     private final AskRedditTimeTask askRedditTimeTask;
     private final LeetcodeProblemTimeTask leetcodeProblemTimeTask;
+    private final  HackerrankProblemTimeTask hackerrankProblemTimeTask;
     @Autowired
     public TimeTaskRegistrationService(final TimerService timerService,
         final AskRedditTimeTask askRedditTimeTask,
-        final LeetcodeProblemTimeTask leetcodeProblemTimeTask) {
+        final LeetcodeProblemTimeTask leetcodeProblemTimeTask,
+        final HackerrankProblemTimeTask hackerrankProblemTimeTask) {
         this.timerService = timerService;
         this.askRedditTimeTask = askRedditTimeTask;
         this.leetcodeProblemTimeTask = leetcodeProblemTimeTask;
+        this.hackerrankProblemTimeTask = hackerrankProblemTimeTask;
     }
     @Bean
     private void registerTasks() {
         logger.info("Registering daily tasks");
         timerService.scheduleDailyTask(askRedditTimeTask);
         timerService.scheduleDailyTask(leetcodeProblemTimeTask);
+        timerService.scheduleDailyTask(hackerrankProblemTimeTask);
         logger.info("Daily tasks registered");
     }
 }

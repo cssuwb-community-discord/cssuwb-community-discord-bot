@@ -1,4 +1,0 @@
-{
-  "randomQuery": "query randomQuestion($categorySlug: String, $filters: QuestionListFilterInput){randomQuestion(categorySlug: $categorySlug, filters: $filters){title titleSlug difficulty likes stats topicTags{name}}}",
-  "specificQuery": "query questionData($titleSlug: String!){question(titleSlug: $titleSlug){title titleSlug difficulty isPaidOnly likes stats topicTags{name}}}"
-}

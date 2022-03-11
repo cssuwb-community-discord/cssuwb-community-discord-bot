@@ -7,11 +7,14 @@ import org.springframework.stereotype.Component;
 public class SlashFactory {
     private final LeetcodeSlash leetcodeSlash;
     private final AskRedditSlash askRedditSlash;
-
+    private final HackerrankSlash hackerrankSlash;
     @Autowired
-    public SlashFactory(final LeetcodeSlash leetcodeSlash, final AskRedditSlash askRedditSlash) {
+    public SlashFactory(final LeetcodeSlash leetcodeSlash,
+        final AskRedditSlash askRedditSlash,
+        final HackerrankSlash hackerrankSlash) {
         this.askRedditSlash = askRedditSlash;
         this.leetcodeSlash = leetcodeSlash;
+        this.hackerrankSlash = hackerrankSlash;
     }
     public SlashFunctionality getSlashFunctionality(final String name){
         switch(name){
@@ -19,6 +22,8 @@ public class SlashFactory {
                 return leetcodeSlash;
             case "askreddit":
                 return askRedditSlash;
+            case "hackerrank":
+                return hackerrankSlash;
         }
         throw new IllegalArgumentException("Slash functionality factory does not contain: " + name);
     }

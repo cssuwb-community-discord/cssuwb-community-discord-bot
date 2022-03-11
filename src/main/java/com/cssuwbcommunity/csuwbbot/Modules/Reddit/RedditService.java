@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Random;
 import org.springframework.stereotype.Service;
 
-@Service("redditModule")
+@Service("redditService")
 public class RedditService {
     private static final String redditFormat =
         "https://www.reddit.com/r/%s/%s.json?t=%s";

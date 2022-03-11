@@ -7,7 +7,7 @@ import com.cssuwbcommunity.csuwbbot.Modules.Reddit.RedditPost;
 import com.cssuwbcommunity.csuwbbot.Modules.Reddit.RedditService;
 import com.cssuwbcommunity.csuwbbot.Modules.Reddit.RedditTime;
 import com.cssuwbcommunity.csuwbbot.registration.SettingsService;
-import java.util.Set;
+
 import java.util.TimerTask;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.MessageEmbed;
@@ -18,7 +18,8 @@ import org.springframework.stereotype.Component;
 
 @Component("askRedditTimeTask")
 public class AskRedditTimeTask extends TimerTask {
-    private final Logger logger = LoggerFactory.getLogger(AskRedditTimeTask.class);
+    private static final Logger logger = LoggerFactory
+        .getLogger(AskRedditTimeTask.class);
     private final RedditService redditService;
     private final DiscordBotService discordBotService;
     private final EmbedCreationService embedCreationService;
@@ -41,7 +42,7 @@ public class AskRedditTimeTask extends TimerTask {
             final RedditPost post = redditService
                 .getRedditPost("askreddit", RedditCategory.HOT, RedditTime.ALL);
             logger.debug("Creating message embed for post");
-            final MessageEmbed embed = embedCreationService.buildRedditEmbed(post);
+            final MessageEmbed embed = embedCreationService.getEmbed(post);
             logger.debug("Fetching channel id from settings");
             final String channelID = settingsService
                 .getSettingsObject()

@@ -8,8 +8,8 @@ import com.cssuwbcommunity.csuwbbot.Modules.Reddit.RedditTime;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import net.dv8tion.jda.api.entities.MessageEmbed;
-import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
-import net.dv8tion.jda.api.requests.restaction.interactions.ReplyAction;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.requests.restaction.interactions.ReplyCallbackAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,11 +24,11 @@ public class AskRedditSlash implements SlashFunctionality{
         this.embedCreationService = embedCreationService;
     }
     @Override
-    public ReplyAction execute(final SlashCommandEvent event)
+    public ReplyCallbackAction execute(final SlashCommandInteractionEvent event)
         throws IOException, URISyntaxException, InterruptedException {
         final RedditPost post = redditService
             .getRedditPost("askreddit", RedditCategory.HOT, RedditTime.ALL);
-        final MessageEmbed embed = embedCreationService.buildRedditEmbed(post);
+        final MessageEmbed embed = embedCreationService.getEmbed(post);
         return event.replyEmbeds(embed);
     }
 }

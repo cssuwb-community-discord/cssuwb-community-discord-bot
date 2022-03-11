@@ -1,6 +1,6 @@
 package com.cssuwbcommunity.csuwbbot.Discord.Slash;
 
-import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,7 @@ public class SlashListener extends ListenerAdapter {
         this.logger = LoggerFactory.getLogger(SlashListener.class);
     }
     @Override
-    public void onSlashCommand(SlashCommandEvent event){
+    public void onSlashCommandInteraction(SlashCommandInteractionEvent event){
         final String eventName = event.getName();
         final SlashFunctionality slashFunctionality = slashFactory
             .getSlashFunctionality(eventName);

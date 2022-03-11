@@ -28,6 +28,10 @@
     {
       "name": "askreddit",
       "description": "Fetch a question from r/AskReddit"
+    },
+    {
+      "name": "hackerrank",
+      "description": "Fetch a problem from Hackerrank"
     }
   ]
 }

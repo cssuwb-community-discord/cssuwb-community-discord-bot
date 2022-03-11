@@ -2,15 +2,15 @@ package com.cssuwbcommunity.csuwbbot.Modules.Leetcode;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("leetcodeService")
 public class LeetcodeService {
-    private LeetcodeProblemParsingService leetcodeProblemParsingService;
-    private LeetcodeProblemFetchingService leetcodeProblemFetchingService;
+    private final LeetcodeProblemParsingService leetcodeProblemParsingService;
+    private final LeetcodeProblemFetchingService leetcodeProblemFetchingService;
     private final Gson gson;
     @Autowired
     public LeetcodeService(final LeetcodeProblemFetchingService leetcodeProblemFetchingService,
@@ -19,17 +19,14 @@ public class LeetcodeService {
         this.leetcodeProblemParsingService = leetcodeProblemParsingService;
         this.gson = new Gson();
     }
-    public LeetcodeProblemDetails fetchRandomProblem(final LeetcodeProblemFilter filter)
+    public LeetcodeProblem fetchRandomProblem(final LeetcodeProblemFilter filter)
         throws IOException {
-        final String responseBody = leetcodeProblemFetchingService
+        final JsonObject responseBody = leetcodeProblemFetchingService
             .fetchRandomProblem(filter);
-        final LeetcodeProblemDetails problemDetails = processResponse(responseBody);
+        final LeetcodeProblem problemDetails = processResponse(responseBody);
         return problemDetails;
     }
-    private LeetcodeProblemDetails processResponse(final String response) {
-        final JsonObject rawJson = JsonParser
-            .parseString(response)
-            .getAsJsonObject();
+    private LeetcodeProblem processResponse(final JsonObject rawJson) {
         final JsonObject questionJson = rawJson
             .get("data")
             .getAsJsonObject()
@@ -39,8 +36,8 @@ public class LeetcodeService {
             .rewriteTags(questionJson);
         final JsonObject statsParsed = leetcodeProblemParsingService
             .parseStats(taggedJson);
-        final LeetcodeProblemDetails problemDetails = gson
-            .fromJson(statsParsed, LeetcodeProblemDetails.class);
+        final LeetcodeProblem problemDetails = gson
+            .fromJson(statsParsed, LeetcodeProblem.class);
         return problemDetails;
     }
 }

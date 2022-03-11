@@ -2,9 +2,8 @@ package com.cssuwbcommunity.csuwbbot.TimeTasks;
 
 import com.cssuwbcommunity.csuwbbot.Discord.DiscordBotService;
 import com.cssuwbcommunity.csuwbbot.Discord.EmbedCreationService;
-import com.cssuwbcommunity.csuwbbot.Modules.Leetcode.LeetcodeProblem;
-import com.cssuwbcommunity.csuwbbot.Modules.Leetcode.LeetcodeProblemFilter;
-import com.cssuwbcommunity.csuwbbot.Modules.Leetcode.LeetcodeService;
+import com.cssuwbcommunity.csuwbbot.Modules.Hackerrank.HackerrankProblem;
+import com.cssuwbcommunity.csuwbbot.Modules.Hackerrank.HackerrankService;
 import com.cssuwbcommunity.csuwbbot.registration.SettingsService;
 import java.util.TimerTask;
 import net.dv8tion.jda.api.entities.MessageChannel;
@@ -14,19 +13,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component("leetcodeProblemTimeTask")
-public class LeetcodeProblemTimeTask extends TimerTask {
+public class HackerrankProblemTimeTask extends TimerTask {
     private static final Logger logger = LoggerFactory
         .getLogger(AskRedditTimeTask.class);
-    private final LeetcodeService leetcodeService;
+    private final HackerrankService hackerrankService;
     private final DiscordBotService discordBotService;
     private final EmbedCreationService embedCreationService;
     private final SettingsService settingsService;
 
-    public LeetcodeProblemTimeTask(final LeetcodeService leetcodeService,
+    public HackerrankProblemTimeTask(final HackerrankService hackerrankService,
         final DiscordBotService discordBotService,
         final EmbedCreationService embedCreationService,
         final SettingsService settingsService) {
-        this.leetcodeService = leetcodeService;
+        this.hackerrankService = hackerrankService;
         this.discordBotService = discordBotService;
         this.embedCreationService = embedCreationService;
         this.settingsService = settingsService;
@@ -34,32 +33,29 @@ public class LeetcodeProblemTimeTask extends TimerTask {
     @Override
     public void run() {
         try {
-            logger.info("Beginning execution of LeetcodeProblemTimeTask");
-            logger.debug("Creating problem filter");
-            final LeetcodeProblemFilter filter =
-                new LeetcodeProblemFilter(false);
+            logger.info("Beginning execution of HackerrankProblemTimeTask");
             logger.debug("Fetching problem");
-            final LeetcodeProblem leetcodeProblem = leetcodeService
-                .fetchRandomProblem(filter);
+            final HackerrankProblem hackerrankProblem = hackerrankService
+                .fetchHackerrankProblem();
             logger.debug("Creating message embed for problem");
             final MessageEmbed embed = embedCreationService
-                .getEmbed(leetcodeProblem);
+                .getEmbed(hackerrankProblem);
             logger.debug("Fetching channel id from settings");
             final String channelID = settingsService
                 .getSettingsObject()
                 .get("discord")
                 .getAsJsonObject()
-                .get("leetcodeChannel")
+                .get("hackerrankChannel")
                 .getAsString();
             final MessageChannel channel = discordBotService
                 .getDiscordInterface()
                 .getTextChannelById(channelID);
             logger.debug("Sending embed");
             channel.sendMessageEmbeds(embed).queue();
-            logger.info("Finished execution of LeetcodeProblemTimeTask");
+            logger.info("Finished execution of HackerrankProblemTimeTask");
         }
         catch(Exception e) {
-            logger.error("An error occured in executing LeetcodeProblemTimeTask", e);
+            logger.error("An error occured in executing HackerrankProblemTimeTask", e);
         }
     }
 }
