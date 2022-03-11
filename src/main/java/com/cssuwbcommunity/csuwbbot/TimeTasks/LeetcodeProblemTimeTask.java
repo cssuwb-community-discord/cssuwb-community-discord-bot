@@ -55,7 +55,8 @@ public class LeetcodeProblemTimeTask extends TimerTask {
                 .getDiscordInterface()
                 .getTextChannelById(channelID);
             logger.debug("Sending embed");
-            channel.sendMessageEmbeds(embed).queue();
+            channel.sendMessageEmbeds(embed)
+                .queue(message -> DiscordBotService.createThreadOnMessage(message, leetcodeProblem.getTitle()));
             logger.info("Finished execution of LeetcodeProblemTimeTask");
         }
         catch(Exception e) {

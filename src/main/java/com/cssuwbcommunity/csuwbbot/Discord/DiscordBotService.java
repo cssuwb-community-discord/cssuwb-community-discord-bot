@@ -7,6 +7,7 @@ import javax.security.auth.login.LoginException;
 import lombok.Getter;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,7 @@ public class DiscordBotService {
             .addEventListeners(slashListener)
             .build();
     }
-
+    public static void createThreadOnMessage(final Message message, final String threadName) {
+        message.createThreadChannel(threadName).queue();
+    }
 }

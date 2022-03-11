@@ -51,7 +51,8 @@ public class HackerrankProblemTimeTask extends TimerTask {
                 .getDiscordInterface()
                 .getTextChannelById(channelID);
             logger.debug("Sending embed");
-            channel.sendMessageEmbeds(embed).queue();
+            channel.sendMessageEmbeds(embed)
+                .queue(message -> DiscordBotService.createThreadOnMessage(message, hackerrankProblem.getName()));
             logger.info("Finished execution of HackerrankProblemTimeTask");
         }
         catch(Exception e) {
