@@ -5,6 +5,7 @@ import lombok.Getter;
 
 @Getter
 public class LeetcodeProblem {
+    private short questionId;
     private String title;
     private String titleSlug;
     private String difficulty;
