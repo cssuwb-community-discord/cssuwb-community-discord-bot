@@ -26,6 +26,7 @@ public class EmbedCreationService {
     }
     public MessageEmbed getEmbed(final LeetcodeProblem problemDetails) {
         final StringBuffer acceptBuffer = new StringBuffer();
+        final StringBuffer likeBuffer = new StringBuffer();
         acceptBuffer.append(problemDetails.getTotalAccepted());
         acceptBuffer.append("/");
         acceptBuffer.append(problemDetails.getTotalSubmission());
@@ -37,7 +38,10 @@ public class EmbedCreationService {
             .setTitle(problemDetails.getTitle(), problemDetails.getProblemURL())
             .setColor(new Color(235, 150, 30))
             .addField("Difficulty", problemDetails.getDifficulty(), false)
+            .addField("Category", problemDetails.getCategoryTitle(), false)
             .addField("Acceptance Rate", acceptBuffer.toString(), false)
+            .addField("Likes", String.valueOf(problemDetails.getLikes()), true)
+            .addField("Dislikes", String.valueOf(problemDetails.getDislikes()), true);
         return builder.build();
     }
     public MessageEmbed getEmbed(final HackerrankProblem problemDetails) {

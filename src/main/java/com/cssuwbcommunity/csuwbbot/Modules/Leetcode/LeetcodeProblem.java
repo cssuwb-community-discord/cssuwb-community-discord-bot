@@ -9,7 +9,10 @@ public class LeetcodeProblem {
     private String title;
     private String titleSlug;
     private String difficulty;
+    private String categoryTitle;
+    private boolean isPaidOnly;
     private int likes;
+    private int dislikes;
     private List<String> topicTags;
     private int totalSubmission;
     private int totalAccepted;
