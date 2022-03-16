@@ -26,25 +26,18 @@ public class EmbedCreationService {
     }
     public MessageEmbed getEmbed(final LeetcodeProblem problemDetails) {
         final StringBuffer acceptBuffer = new StringBuffer();
-        final StringBuffer tagsBuffer = new StringBuffer();
         acceptBuffer.append(problemDetails.getTotalAccepted());
         acceptBuffer.append("/");
         acceptBuffer.append(problemDetails.getTotalSubmission());
         acceptBuffer.append(" (");
         acceptBuffer.append(String.format("%.2f", problemDetails.getAcceptancePercentage()));
         acceptBuffer.append("%)");
-        problemDetails.getTopicTags().stream().forEach(tag -> {
-            tagsBuffer.append(tag);
-            tagsBuffer.append(", ");
-        });
-        tagsBuffer.delete(tagsBuffer.length()-2, tagsBuffer.length());
         final EmbedBuilder builder = new EmbedBuilder()
             .setAuthor("Leetcode", "https://leetcode.com", "https://pbs.twimg.com/profile_images/910592237695676416/7xInX10u_200x200.jpg")
             .setTitle(problemDetails.getTitle(), problemDetails.getProblemURL())
             .setColor(new Color(235, 150, 30))
             .addField("Difficulty", problemDetails.getDifficulty(), false)
             .addField("Acceptance Rate", acceptBuffer.toString(), false)
-            .addField("Topic Tags", tagsBuffer.toString(), false);
         return builder.build();
     }
     public MessageEmbed getEmbed(final HackerrankProblem problemDetails) {
