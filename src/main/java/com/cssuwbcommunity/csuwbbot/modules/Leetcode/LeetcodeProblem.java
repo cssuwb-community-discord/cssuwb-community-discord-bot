@@ -61,8 +61,15 @@ public class LeetcodeProblem {
     }
     private JsonObject getAcceptanceRateField() {
         final JsonObject fieldObject = new JsonObject();
+        final StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(stats.getTotalAcceptedRaw());
+        stringBuilder.append("/");
+        stringBuilder.append(stats.getTotalSubmissionRaw());
+        stringBuilder.append(" (");
+        stringBuilder.append(stats.getAcRate());
+        stringBuilder.append(")");
         fieldObject.addProperty("name", "Acceptance Rate");
-        fieldObject.addProperty("value", stats.getAcRate());
+        fieldObject.addProperty("value", stringBuilder.toString());
         fieldObject.addProperty("inline", false);
         return fieldObject;
     }

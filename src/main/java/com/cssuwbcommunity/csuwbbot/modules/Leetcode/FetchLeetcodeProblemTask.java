@@ -28,7 +28,6 @@ public class FetchLeetcodeProblemTask {
         final String filterJsonString = gson.toJson(variables);
         final String queryString = MessageFormat
                 .format(GET_RANDOM_PROBLEM_TEMPLATE, RANDOM_GRAPHQL_QUERY, filterJsonString);
-        System.out.println(queryString);
         final URL leetcodeURL = new URL(GRAPHQL_LINK);
         final HttpsURLConnection connection = (HttpsURLConnection) leetcodeURL.openConnection();
         connection.setRequestMethod("GET");

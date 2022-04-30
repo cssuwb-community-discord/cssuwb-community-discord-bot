@@ -24,7 +24,6 @@ public class FetchAskRedditProblemTask {
     public RedditPost execute()
         throws IOException {
         final String link = MessageFormat.format(REDDIT_FORMAT, "askreddit","hot","all");
-        System.out.println(link);
         final URL redditURL = new URL(link);
         final HttpsURLConnection connection = (HttpsURLConnection)
             redditURL.openConnection();
