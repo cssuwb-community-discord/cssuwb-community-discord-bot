@@ -1,7 +1,0 @@
-{
-  "graphQLLink": "https://leetcode.com/graphql",
-  "graphQLQueries": {
-    "random": "query randomQuestion($categorySlug: String, $filters: QuestionListFilterInput){randomQuestion(categorySlug: $categorySlug, filters: $filters){questionId  title titleSlug difficulty categoryTitle isPaidOnly likes dislikes stats topicTags{name}}}",
-    "specific": "query questionData($titleSlug: String!){question(titleSlug: $titleSlug){questionId  title titleSlug difficulty categoryTitle isPaidOnly likes dislikes stats topicTags{name}}}"
-  }
-}
